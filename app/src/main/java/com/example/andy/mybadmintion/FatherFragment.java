@@ -32,9 +32,9 @@ public  abstract class FatherFragment extends Fragment {
     private int gamePoint;
 
 
-    private int fraction1;
-    private int fraction2;
-    private int fraction3;
+    private int fraction;
+
+
 
 
     public FatherFragment() {
@@ -58,19 +58,19 @@ public  abstract class FatherFragment extends Fragment {
         gamePoint =setPointNumber();
         Toast.makeText(getActivity(),"Fragment→onStart，設定分數的case="+ gamePoint,Toast.LENGTH_LONG).show();
         findId();
-
-        switch (gamePoint) {
-            case 1:
-                onClickPoint_1();
-                break;
-            case 2:
-                onClickPoint_2();
-                break;
-
-            case 3:
-                onClickPoint_3();
-                break;
-        }
+        onClickPoint(gamePoint);
+//        switch (gamePoint) {
+//            case 1:
+//                onClickPoint_1();
+//                break;
+//            case 2:
+//                onClickPoint_2();
+//                break;
+//
+//            case 3:
+//                onClickPoint_3();
+//                break;
+//        }
     }
 
 
@@ -83,33 +83,48 @@ public  abstract class FatherFragment extends Fragment {
         m_tv_fraction3 = (TextView) getView().findViewById(R.id.tv_fraction3);
 
     }
-    //點擊 第一局
-    private void onClickPoint_1() {
+    //點擊 第局
+    private void onClickPoint(int gamePoint) {
+
+        TextView test =null;
+        switch (gamePoint) {
+            case 1:
+             test  = m_tv_fraction1;
+                break;
+
+            case 2:
+                test  = m_tv_fraction2;
+                break;
+
+            case 3:
+                test  = m_tv_fraction3;
+                break;
+        }
+
+
         Toast.makeText(getActivity(),"Fragment1 開始設定第一局分數",Toast.LENGTH_LONG).show();
 
+        final TextView finalTest = test;
         m_btn_加.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlerDialogListener listener = new AlerDialogListener();
 
-                //測試
-                // m_tv_fraction1
-                fraction1 = Integer.parseInt(m_tv_fraction1.getText().toString());
 
-                if (fraction1 == 5) {
-//                    LayoutInflater inflater = getActivity().getLayoutInflater();
-//                    View view = inflater.inflate(R.layout.activity_2,  null );
+                fraction = Integer.parseInt(finalTest.getText().toString());
+
+                if (fraction == 5) {
+
                     new AlertDialog.Builder(getActivity())
-//                          .setView(view)
                             .setMessage("請問是否結束這局?")
                             .setPositiveButton("確定", listener)
                             .setNegativeButton("取消", listener)
                             .show();
-                } else if (fraction1 < 5) {
+                } else if (fraction < 5) {
                     //測試
                     // m_tv_fraction1
-                    m_tv_fraction1.setText(String.valueOf(++fraction1));
-                    if (fraction1 == 5) {
+                    finalTest.setText(String.valueOf(++fraction));
+                    if (fraction == 5) {
                         new AlertDialog.Builder(getActivity())
                                 .setMessage("請問是否結束這局?")
                                 .setPositiveButton("確定", listener)
@@ -119,109 +134,18 @@ public  abstract class FatherFragment extends Fragment {
                 }
             }
         });
-
         m_btn_減.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fraction1 = Integer.parseInt(m_tv_fraction1.getText().toString());
-                if (fraction1 > 0 && fraction1<=5) {
+                fraction = Integer.parseInt(finalTest.getText().toString());
+                if (fraction > 0 && fraction <=5) {
                     //測試m_tv_fraction1
-                    m_tv_fraction1.setText(String.valueOf(fraction1 - 1));
+                    finalTest.setText(String.valueOf(fraction - 1));
                 }
             }
         });
 
     }
-    //點擊 第二局
-    private void onClickPoint_2() {
-        Toast.makeText(getActivity(),"Fragment2 開始設定第二局分數",Toast.LENGTH_LONG).show();
-        m_btn_加.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlerDialogListener listener = new AlerDialogListener();
-                fraction2 = Integer.parseInt(m_tv_fraction2.getText().toString());
-
-                if (fraction2 == 5) {
-//                    LayoutInflater inflater = getActivity().getLayoutInflater();
-//                    View view = inflater.inflate(R.layout.activity_2,  null );
-                    new AlertDialog.Builder(getActivity())
-//                          .setView(view)
-                            .setMessage("請問是否結束這局?")
-                            .setPositiveButton("確定", listener)
-                            .setNegativeButton("取消", listener)
-                            .show();
-                } else if (fraction2 < 5) {
-                    //測試
-                    // m_tv_fraction1
-                    m_tv_fraction2.setText(String.valueOf(++fraction2));
-                    if (fraction2 == 5) {
-                        new AlertDialog.Builder(getActivity())
-                                .setMessage("請問是否結束這局?")
-                                .setPositiveButton("確定", listener)
-                                .setNegativeButton("取消", listener)
-                                .show();
-                    }
-                }
-            }
-        });
-
-        m_btn_減.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //測試m_tv_fraction1
-                fraction2 = Integer.parseInt(m_tv_fraction2.getText().toString());
-                if (fraction2 > 0) {
-                    //測試m_tv_fraction1
-                    m_tv_fraction2.setText(String.valueOf(fraction2 - 1));
-                }
-            }
-        });
-
-    }
-    //點擊 第三局
-    private void onClickPoint_3() {
-        Toast.makeText(getActivity(),"Fragment1 開始設定第三局分數",Toast.LENGTH_LONG).show();
-        m_btn_加.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlerDialogListener listener = new AlerDialogListener();
-                fraction3 = Integer.parseInt(m_tv_fraction3.getText().toString());
-
-                if (fraction3 == 5) {
-//                    LayoutInflater inflater = getActivity().getLayoutInflater();
-//                    View view = inflater.inflate(R.layout.activity_2,  null );
-                    new AlertDialog.Builder(getActivity())
-//                          .setView(view)
-                            .setMessage("請問是否結束這局?")
-                            .setPositiveButton("確定", listener)
-                            .setNegativeButton("取消", listener)
-                            .show();
-                } else if (fraction3 < 5) {
-                    //測試
-                    // m_tv_fraction3
-                    m_tv_fraction3.setText(String.valueOf(++fraction3));
-                    if (fraction3 == 5) {
-                        new AlertDialog.Builder(getActivity())
-                                .setMessage("請問是否結束這局?")
-                                .setPositiveButton("確定", listener)
-                                .setNegativeButton("取消", listener)
-                                .show();
-                    }
-                }
-            }
-        });
-
-        m_btn_減.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //測試m_tv_fraction3
-                fraction3 = Integer.parseInt(m_tv_fraction3.getText().toString());
-                if (fraction3 > 0) {
-                    //測試m_tv_fraction3
-                    m_tv_fraction3.setText(String.valueOf(fraction3 - 1));
-                }
-            }
-        });}
 
     //內部類別：實現Dailog所響應的事件
     private class AlerDialogListener implements DialogInterface.OnClickListener {
@@ -230,7 +154,7 @@ public  abstract class FatherFragment extends Fragment {
             switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
                     Intent intent = new Intent(getActivity(), setNextClass());
-//                     gamePoint =0;
+                     fraction =0;
 
 
                     startActivity(intent);
@@ -241,7 +165,6 @@ public  abstract class FatherFragment extends Fragment {
             }
         }
     }
-
 
     //封裝的效應
     //取得第一局的TextView
