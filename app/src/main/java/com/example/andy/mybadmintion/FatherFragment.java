@@ -191,11 +191,7 @@ public  abstract class FatherFragment extends Fragment {
     public void setInit_Point2(String s) {
         m_tv_fraction2.setText(s);
     }
-
-    public Class getclass() {
-        return setNextClass();
-    }
-
+    
     //抽象：讓子類別 設定 跳轉的Class
     public abstract Class setNextClass();
 
