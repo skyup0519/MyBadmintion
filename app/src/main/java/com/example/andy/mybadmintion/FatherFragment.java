@@ -195,7 +195,7 @@ public  abstract class FatherFragment extends Fragment {
     //抽象：讓子類別 設定 跳轉的Class
     public abstract Class setNextClass();
 
-    //抽象：讓子類別 設定 局數
+    //抽象：讓子類別 設定局數
     public  abstract int setPointNumber();
 
 }
