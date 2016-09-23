@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\dialog_horizontal_black.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\dialog_horizontal_black.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\dialog_divider_horizontal_light.9.png",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\dialog_divider_horizontal_light.9.png"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\dialog_process_medium.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\dialog_process_medium.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\dialog_horizontal_gray.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\dialog_horizontal_gray.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\dialog_process_big.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\dialog_process_big.xml"
+    }
+]

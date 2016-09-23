@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\dialog_i_btn_in_300.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\anim\\dialog_i_btn_in_300.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\dialog_i_btn_out_300.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\anim\\dialog_i_btn_out_300.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\dialog_enter_normal.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\anim\\dialog_enter_normal.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\dialog_exit.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\anim\\dialog_exit.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\dialog_interpolator_cycle5.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\anim\\dialog_interpolator_cycle5.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim\\dialog_shake_horizontal_500.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\anim\\dialog_shake_horizontal_500.xml"
+    }
+]

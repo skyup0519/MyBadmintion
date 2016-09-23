@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\dialog_btn_blue_focus.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\drawable\\dialog_btn_blue_focus.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\dialog_btn_blue_normal.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\drawable\\dialog_btn_blue_normal.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\dialog_bg.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\drawable\\dialog_bg.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\dialog_btn_blue_pressed.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\drawable\\dialog_btn_blue_pressed.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\dialog_btn_blue_picker.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\drawable\\dialog_btn_blue_picker.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\dialog_btn_blue_bright_pressed.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\drawable\\dialog_btn_blue_bright_pressed.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\dialog_btn_blue_bright_picker.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\drawable\\dialog_btn_blue_bright_picker.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\dialog_btn_blue_bright_normal.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\drawable\\dialog_btn_blue_bright_normal.xml"
+    }
+]

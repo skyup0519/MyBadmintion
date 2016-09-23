@@ -1,0 +1,78 @@
+<resources>
+    <string name="app_name">羽球魂</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+
+    <!--基本按鈕-->
+    <string name="dialog_btn_enter">確定</string>
+    <string name="dialog_btn_cancel">取消</string>
+    <string name="dialog_btn_back_menu">返回主畫面</string>
+    <string name="dialog_btn_change">交換場地</string>
+    <string name="dialog_btn_back_restar">本局刷新</string>
+
+    <!--EdText-->
+    <string name="edtext_hint_name_msg">請輸入隊名</string>
+
+    <!--process-->
+    <string name="process_msg">資料讀取中</string>
+
+    <!--計分板 Dialog to Fragment-->
+    <string name="dialog_title_nextPoint">確定要結束本局？</string>
+    <string name="dialog_msg_nextPoint">沒問題就進入下一局囉 ！</string>
+
+    <string name="dialog_title_nextClass">確定比賽結束？</string>
+    <string name="dialog_msg_nextClass">沒問題就開始結算囉 ！</string>
+
+    <!--Observer Dialog-->
+    <string name="dialog_title_noUtil">網路連線失敗</string>
+    <string name="dialog_msg_noUtil">您將無法得到最即時資訊歐 ！</string>
+
+    <string name="dialog_title_error">更新資料失敗</string>
+    <string name="dialog_msg_error">請稍候再試 謝謝 ！</string>
+
+    <string name="dialog_title_scuess">取得最新資料</string>
+    <string name="dialog_msg_scuess">右邊滑動 可獲取圖片→</string>
+
+    <!--主畫面 Dialog-->
+    <string name="dialog_title_finish">離開主程式？</string>
+    <string name="dialog_msg_finish">將會離開羽球魂歐 ！</string>
+
+    <!--計分板 Dialog-->
+    <string name="dialog_title_back">返回主畫面？</string>
+    <string name="dialog_title_change">交換場地？</string>
+    <string name="dialog_title_restar">刷新比賽分數？</string>
+
+    <string name="dialog_msg_back">當前的比賽分數都會消失歐 ！</string>
+    <string name="dialog_msg_change">當前的比賽數據都會交換歐 ！</string>
+    <string name="dialog_msg_restar">當前的比賽分數都會消失歐 ！</string>
+
+    <!--Video Dialog-->
+    <string name="dialog_tittle_god"> 神龍：</string>
+    <string name="dialog_msg_god">說出 羽球的願望吧！！</string>
+
+    <!--RecyclerView Item-->
+    <string name="item_map">map</string>
+    <string name="item_carmap">導航</string>
+    <string name="item_sportName">球館名稱</string>
+    <string name="item_sportCenter">運動中心name</string>
+    <string name="item_sportPostion">球館位置</string>
+    <string name="item_sportDates">本館營業時間</string>
+    <string name="item_sportFax">傳真號碼</string>
+    <string name="item_sportNumber">電話號碼</string>
+    <string name="item_sportMail">E_mail信箱</string>
+    <string name="item_scrllMsg">(圖片預覽→</string>
+
+    <!--msg-->
+    <string name="dialog_unback"> 嘿嘿! 比賽未完成　無法返回</string>
+    <string name="msg_game_result">比 賽 結 果 !!!!!!!!!!</string>
+    <string name="msg_check_current_Point">再次確認、設定 當前的『局數』</string>
+    <string name="msg_check_current_Fraction">再次確認、設定 當前的『分數』</string>
+
+    <!--Marqee-->
+    <string name="marqee_msg">     ♫不再羽球場 就在前往的路上 ！！！            </string>
+
+</resources>

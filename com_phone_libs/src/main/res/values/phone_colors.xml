@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="phone_color_Gray">#FF68686F</color>
+	<color name="phone_color_Blue">#FF4242FF</color>
+	<color name="phone_color_Coffee">#FFAD845B</color>
+	<color name="phone_color_White">#FFFFFFFF</color>
+	<color name="phone_color_Black">#FF000000</color>
+	<color name="phone_color_Yellow">#FFF8F8D4</color>
+	<color name="phone_color_transparent_Bg">#00FFFFFF</color>
+</resources>

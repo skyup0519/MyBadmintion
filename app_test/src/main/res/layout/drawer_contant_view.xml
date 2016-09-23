@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+<!--用來解決Dwawer問題-->
+    <View
+        android:id="@+id/content_view_up"
+        android:layout_width="0.1dp"
+        android:layout_height="20dp"></View>
+    <View
+        android:layout_below="@+id/content_view_up"
+        android:id="@+id/content_view_doen"
+        android:layout_width="0.1dp"
+        android:layout_height="?attr/actionBarSize"></View>
+
+</merge>

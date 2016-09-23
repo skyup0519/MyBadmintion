@@ -1,0 +1,104 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment.Fragment_viewpage1">
+
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:paddingRight="8dp"
+        android:paddingLeft="1dp"
+        android:layout_width="match_parent"
+        android:background="@android:color/black"
+        android:orientation="horizontal"
+        android:layout_height="150dp">
+
+        <View
+            android:layout_width="3dp"
+            android:layout_marginRight="8dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_red_dark"
+            ></View>
+        <TextView
+          android:textStyle="bold"
+            android:id="@+id/play_game_fragment_tv_point1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.1"
+            android:text="0"
+            android:textColor="@android:color/background_light"
+            android:textSize="50dp" />
+        <View
+            android:layout_width="3dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="8dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_red_dark"
+
+            ></View>
+
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/play_game_fragment_tv_point2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.1"
+            android:text="0"
+            android:textColor="@android:color/background_light"
+            android:textSize="50dp" />
+        <View
+            android:layout_width="3dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="8dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_red_dark"
+            ></View>
+
+
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/play_game_fragment_tv_point3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.1"
+            android:text="0"
+            android:textColor="@android:color/background_light"
+            android:textSize="50dp" />
+        <View
+            android:layout_width="3dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="8dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/holo_red_dark"
+            ></View>
+
+        <Button
+            android:onClick="onclick"
+            android:background="@drawable/btn0"
+            android:id="@+id/play_game_fragment_btn_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.1"
+            android:text="+"
+            android:textSize="40dp" />
+
+        <Button
+            android:onClick="onclick"
+            android:background="@drawable/btn0"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/play_game_fragment_btn_delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.1"
+            android:textSize="40dp"
+            android:text="-"
+            />
+    </LinearLayout>
+
+</FrameLayout>

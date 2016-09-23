@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:minWidth="280dip"
+	android:layout_height="wrap_content"
+	android:background="@drawable/dialog_bg"
+	android:id="@+id/phone_dialog_root">
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="5dip"
+		android:gravity="center">
+
+		<TextView
+			style="@style/phone_DialogText.Title"
+			android:id="@+id/title"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+
+	</LinearLayout>
+
+	<include
+		layout="@layout/dialog_picker_horizontal_gray" />
+
+	<LinearLayout
+		android:id="@+id/content"
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="5dip"
+		android:gravity="center">
+
+		<TextView
+			style="@style/phone_DialogText"
+			android:id="@+id/message"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:gravity="center_vertical|left" 
+			android:scrollbars="vertical"
+			android:singleLine="false"
+			android:maxHeight="300dp"/>
+
+	</LinearLayout>
+
+	<include
+		layout="@layout/dialog_picker_horizontal_gray" />
+
+	<LinearLayout
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="5dip">
+		<Button
+			android:id="@+id/negativeButton"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:layout_margin="5dip"
+			android:textSize="18dip"
+			android:textColor="@color/phone_color_White"
+			android:background="@drawable/dialog_btn_blue_bright_picker"
+			android:singleLine="true" />
+		<Button
+			android:id="@+id/positiveButton"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:layout_margin="5dip"
+			android:textSize="18dip"
+			android:textColor="@color/phone_color_White"
+			android:background="@drawable/dialog_btn_blue_picker"
+			android:singleLine="true" />
+
+		
+	</LinearLayout>
+</LinearLayout>

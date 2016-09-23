@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\dialog_content_process.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\layout\\dialog_content_process.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\dialog_picker_horizontal_black.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\layout\\dialog_picker_horizontal_black.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\dialog_process_full.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\layout\\dialog_process_full.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\dialog_picker_horizontal_gray.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\layout\\dialog_picker_horizontal_gray.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\dialog.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\layout\\dialog.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\dialog_standard.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\layout\\dialog_standard.xml"
+    },
+    {
+        "merged": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\dialog_process_center.xml",
+        "source": "D:\\MyAndroid\\MyBadmintion\\com_phone_libs\\build\\intermediates\\bundles\\debug\\res\\layout\\dialog_process_center.xml"
+    }
+]

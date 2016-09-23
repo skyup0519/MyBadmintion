@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources
+    >
+    <style name="Radio_Button_style">
+        <item name="android:button">@drawable/dot_radio_background</item>
+
+    </style>
+
+
+</resources>

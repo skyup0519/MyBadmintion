@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_menu2"
+    tools:context=".Activity.Badminton_main_menu">
+
+    <RelativeLayout
+        android:id="@+id/badminton_main_minu_views"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <include layout="@layout/drawer_contant_view"></include>
+    </RelativeLayout>
+
+
+    <include layout="@layout/layout_drawers_god"></include>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="12.5dp"
+        android:layout_marginLeft="12dp"
+        android:layout_below="@+id/badminton_main_minu_views"
+        android:orientation="vertical"
+        android:id="@+id/badminton_main_minu_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/badmintion_main_minu_viewpager"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_weight="0.35" />
+
+    <include
+        layout="@layout/radio_button_view"
+        android:id="@+id/badmintion_main_minu_radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ></include>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="1dp"
+        android:id="@+id/badmintion_main_minu_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.65"
+        ></android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+</RelativeLayout>

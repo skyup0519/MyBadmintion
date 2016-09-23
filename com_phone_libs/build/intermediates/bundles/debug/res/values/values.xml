@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="phone_color_Black">#FF000000</color>
+    <color name="phone_color_Blue">#FF4242FF</color>
+    <color name="phone_color_Coffee">#FFAD845B</color>
+    <color name="phone_color_Gray">#FF68686F</color>
+    <color name="phone_color_White">#FFFFFFFF</color>
+    <color name="phone_color_Yellow">#FFF8F8D4</color>
+    <color name="phone_color_transparent_Bg">#00FFFFFF</color>
+    <string name="app_name">Com_mitake_android_chinatrust_phone_tab</string>
+    <string name="dialog_error">Error</string>
+    <string name="dialog_loading">資料讀取中</string>
+    <string name="dialog_no">取消</string>
+    <string name="dialog_select">請選擇</string>
+    <string name="dialog_yes">確定</string>
+    <string name="hello">Hello World, Com_mitake_android_chinatrust_phone_tabActivity!</string>
+    <style name="PhoneDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/phone_color_transparent_Bg</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+    <style name="phone_Animation.Dialog.BottomIn300" parent="@android:style/Animation.Dialog">
+		<item name="android:windowEnterAnimation">@anim/dialog_i_btn_in_300</item>
+		<item name="android:windowExitAnimation">@anim/dialog_i_btn_out_300</item>
+	</style>
+    <style name="phone_Animation.Dialog.Pop" parent="@android:style/Animation.Dialog">
+		<item name="android:windowEnterAnimation">@anim/dialog_enter_normal</item>
+		<item name="android:windowExitAnimation">@anim/dialog_exit</item>
+	</style>
+    <style name="phone_DialogText">
+        <item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:textSize">16dip</item>
+        <item name="android:layout_marginLeft">10dip</item>
+    	<item name="android:layout_marginRight">10dip</item>
+    </style>
+    <style name="phone_DialogText.Title">
+    	<item name="android:textColor">#FFFFFFFF</item>
+        <item name="android:textSize">18dip</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginLeft">10dip</item>
+    	<item name="android:layout_marginRight">10dip</item>
+    </style>
+</resources>
