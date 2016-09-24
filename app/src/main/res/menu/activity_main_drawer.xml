@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_fb"
+            android:icon="@drawable/icon_fb"
+            android:title="@string/navigation_fb" />
+
+        <item
+            android:id="@+id/nav_youTube"
+            android:icon="@drawable/icon_youtube"
+            android:title="@string/navigation_youTube" />
+
+    </group>
+    <!--===================-->
+
+    <item android:title="推薦App">
+        <menu>
+            <item
+                android:id="@+id/nav_3d_eng"
+                android:icon="@drawable/icon_ball1"
+                android:title="@string/navigation_3d_eng" />
+            <item
+                android:id="@+id/nav__3d_ch"
+                android:icon="@drawable/icon_ball2"
+                android:title="@string/navigation_3d_ch" />
+            <item
+                android:id="@+id/nav_3d_game"
+                android:icon="@drawable/icon_ball3"
+                android:title="@string/navigation_3d_game" />
+        </menu>
+    </item>
+
+    <!--===================-->
+
+    <item android:title="夥伴App">
+        <menu>
+
+            <item
+                android:id="@+id/nav_bike"
+                android:icon="@drawable/icon_bike"
+                android:title="@string/navigation_bike" />
+
+            <item
+                android:id="@+id/nav_taipeiGo"
+                android:icon="@drawable/icon_taipeigo"
+                android:title="@string/navigation_taipeiGo" />
+
+        </menu>
+    </item>
+
+</menu>
