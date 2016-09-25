@@ -10,7 +10,7 @@
         android:paddingRight="8dp"
         android:paddingLeft="1dp"
         android:layout_width="match_parent"
-        android:background="@android:color/black"
+        android:background="#263238"
         android:orientation="horizontal"
         android:layout_height="150dp">
 
@@ -29,7 +29,7 @@
             android:layout_weight="0.1"
             android:text="0"
             android:textColor="@android:color/background_light"
-            android:textSize="50dp" />
+            android:textSize="45dp" />
         <View
             android:layout_width="3dp"
             android:layout_marginLeft="2dp"
@@ -48,7 +48,7 @@
             android:layout_weight="0.1"
             android:text="0"
             android:textColor="@android:color/background_light"
-            android:textSize="50dp" />
+            android:textSize="45dp" />
         <View
             android:layout_width="3dp"
             android:layout_marginLeft="2dp"
@@ -67,7 +67,7 @@
             android:layout_weight="0.1"
             android:text="0"
             android:textColor="@android:color/background_light"
-            android:textSize="50dp" />
+            android:textSize="45dp" />
         <View
             android:layout_width="3dp"
             android:layout_marginLeft="2dp"

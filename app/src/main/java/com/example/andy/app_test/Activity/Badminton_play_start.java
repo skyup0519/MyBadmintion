@@ -71,6 +71,8 @@ public class Badminton_play_start extends DrawersGod implements AlertDialog.OnCl
         TestLog.myLog_d(BADMINTON, "onCreate()");
 
         init();
+
+
     }
 
     @Override
@@ -216,7 +218,7 @@ public class Badminton_play_start extends DrawersGod implements AlertDialog.OnCl
         TestLog.myLog_d(BADMINTON, "back_function");
 
         //反回主畫面 比賽局數歸0
-        badminton_Servicer.setCurrent_typ_point(0);
+        badminton_Servicer.setCurrent_typ_point(1);
         finish();
     }
 
@@ -241,6 +243,7 @@ public class Badminton_play_start extends DrawersGod implements AlertDialog.OnCl
         //(重制) 大頭照
         m_iv_photo_up.setImageBitmap(badminton_list[SaveData.MODE_DOWN].getPhoto());
         m_iv_photo_down.setImageBitmap(badminton_list[SaveData.MODE_UP].getPhoto());
+
     }
 
     //(禁止) 別人按返回鍵

@@ -11,13 +11,13 @@ public class Main_badminton_servicer {
     private static int current_typ_point = 1;
 
     //最大分數
-    private  int max_fraction = 2;
+    private  int max_fraction = 11;
 
     //最小分數
     private  int min_fraction = 0;
 
     //最大局數
-    private  int max_point = 2;
+    private  int max_point = 3;
 
     //最小局數
     private  int min_point = 1;

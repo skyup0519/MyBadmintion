@@ -59,7 +59,6 @@
     <string name="dialog_msg_drawer">Google Play商店下載？</string>
 
 
-
     <!--RecyclerView Item-->
     <string name="item_map">map</string>
     <string name="item_carmap">導航</string>
@@ -89,8 +88,6 @@
     <string name="navigation_3d_game">羽毛球Game</string>
     <string name="navigation_bike">Tbike台北通</string>
     <string name="navigation_taipeiGo">通勤客</string>
-
-
 
 
 </resources>

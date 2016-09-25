@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="true">
+    <item
+        android:drawable="@drawable/welcome_1"
+        android:duration="100"></item>
+    <item
+        android:drawable="@drawable/welcome_2"
+        android:duration="100"></item>
+    <item
+        android:drawable="@drawable/welcome_3"
+        android:duration="100"></item>
+    <item
+        android:drawable="@drawable/welcome_4"
+        android:duration="100"></item>
+    <item
+        android:drawable="@drawable/welcome_5"
+        android:duration="100"></item>
+    <item
+        android:drawable="@drawable/welcome_6"
+        android:duration="100"></item>
+
+    <item
+        android:drawable="@drawable/welcome_8"
+        android:duration="100"></item>
+    <item
+        android:drawable="@drawable/welcome_9"
+        android:duration="100"></item>
+    <item
+        android:drawable="@drawable/welcome_10"
+        android:duration="100"></item>
+    <item
+        android:drawable="@drawable/welcome_11"
+        android:duration="100"></item>
+    <item
+        android:drawable="@drawable/welcome_12"
+        android:duration="100"></item>
+    <item
+        android:drawable="@drawable/welcome_13"
+        android:duration="100"></item>
+    <item
+        android:drawable="@drawable/welcome_14"
+        android:duration="100"></item>
+    <item
+        android:drawable="@drawable/welcome_15"
+        android:duration="100"></item>
+
+    <item
+        android:drawable="@drawable/welcome_16"
+        android:duration="100"></item>
+    <item
+        android:drawable="@drawable/welcome_17"
+        android:duration="100"></item>
+    <item
+        android:drawable="@drawable/welcome_18"
+        android:duration="100"></item>
+    <item
+        android:drawable="@drawable/welcome_19"
+        android:duration="100"></item>
+    <item
+        android:drawable="@drawable/welcome_20"
+        android:duration="100"></item>
+
+    <item
+        android:drawable="@drawable/welcome_21"
+        android:duration="800"></item>
+    <item
+        android:drawable="@drawable/welcome_22"
+        android:duration="100"></item>
+    <item
+        android:drawable="@drawable/welcome_23"
+        android:duration="100"></item>
+    <item
+        android:drawable="@drawable/welcome_24"
+        android:duration="100"></item>
+
+    <item
+        android:drawable="@drawable/welcome_25"
+        android:duration="100"></item>
+
+
+</animation-list>

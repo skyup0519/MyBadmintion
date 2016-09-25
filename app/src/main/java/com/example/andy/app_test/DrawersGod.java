@@ -238,11 +238,11 @@ private String mode_navigationItem_seked = "";
 
                  break;
 
-            case R.id.nav_3d_eng:
-                //設定狀態
-                mode_navigationItem_seked = BADMINTION_ENG;
-
-                break;
+//            case R.id.nav_3d_eng:
+//                //設定狀態
+//                mode_navigationItem_seked = BADMINTION_ENG;
+//
+//                break;
 
             case R.id.nav__3d_ch:
                 //設定狀態
