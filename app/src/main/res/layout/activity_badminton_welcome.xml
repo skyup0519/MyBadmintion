@@ -1,23 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context="com.example.andy.app_test.Activity.Badminton_welcome">
 
+    <!--最後進場特效圖-->
+    <ImageView
+        android:id="@+id/activity_badminton_welcome_iv2"
+        android:background="@drawable/welcome_21"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
+    <!--開場動畫-->
     <ImageView
         android:id="@+id/activity_badminton_welcome_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
 
-    <ImageView
-        android:id="@+id/activity_badminton_welcome_iv2"
-        android:background="@drawable/welcome_25"
+    <LinearLayout
+        android:visibility="invisible"
+        android:id="@+id/activity_badminton_welcome_container_msg"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"></View>
+
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3">
+    <TextView
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:text="開 始 體 驗"
+        android:textColor="#263238"
+        android:gravity="center"
+        />
+        </com.facebook.shimmer.ShimmerFrameLayout>
 </LinearLayout>
+
+
+
+
+
+
+</FrameLayout>

@@ -278,11 +278,15 @@ public class Badminton_play_final extends DrawersGod {
     public void  shimmer(){
         TestLog.myLog_d(GAMEEND, "shimmer()");
 
+//        mShimmerViewContainer.setAngle(ShimmerFrameLayout.MaskAngle.CW_0);
+//        mShimmerViewContainer.setDuration(100);
+//        mShimmerViewContainer.setBaseAlpha(0.4f);
+//        mShimmerViewContainer.setDropoff(0.3f);
+//        mShimmerViewContainer.setIntensity(0.6f);
+//        mShimmerViewContainer.startShimmerAnimation();
+
         mShimmerViewContainer.setAngle(ShimmerFrameLayout.MaskAngle.CW_90);
-        mShimmerViewContainer.setDuration(500);
-//        mShimmerViewContainer3.setBaseAlpha(0.4f);
-        mShimmerViewContainer.setDropoff(0.3f);
-        mShimmerViewContainer.setIntensity(0.6f);
+        mShimmerViewContainer.setDuration(3000);
         mShimmerViewContainer.startShimmerAnimation();
 
     }

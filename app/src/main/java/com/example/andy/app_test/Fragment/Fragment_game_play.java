@@ -1,8 +1,12 @@
 package com.example.andy.app_test.Fragment;
 
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.app.Fragment;
 import android.app.Service;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -13,9 +17,10 @@ import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.dialog.android.phone.HelperBasePhoneDialog;
 import com.dialog.android.phone.app.PhoneDialog;
@@ -33,31 +38,31 @@ public class Fragment_game_play extends Fragment implements View.OnClickListener
 
     private Resources res;
 
-
-
-    private View view;
-
     private Button btn_add_fraction, btn_delete_fraction;
 
-    private TextView tv_point1, tv_point2, tv_point3;
+    private TextView tv_fraction1, tv_fraction2, tv_fraction3;
 
-    private int current_fraction = 0;
-    private int current_point = 1;
-
+    //Service
     private Main_badminton_servicer badminton_Servicer = MyApp.getMain_badminton_servicer();
 
-    private final int MAX_FRACTION = badminton_Servicer.getMax_fraction();
+    //比賽設定參數
+    private int current_fraction = 0;
+    private int current_point = 1;
+    private int MAX_FRACTION = badminton_Servicer.getMax_fraction();
     private final int MIN_FRACTION = badminton_Servicer.getMin_fraction();
     private final int MAX_POINT = badminton_Servicer.getMax_point();
     private final int MIN_POINT = badminton_Servicer.getMin_point();
 
+    //震動參數(安全型別 避免神奇數字)
     private final int VIBRATE_ADD_FRACTION = 111;
     private final int VIBRATE_DELETE_FRACTION = 222;
     private final int VIBRATE_CHANGE_POINI = 333;
     private final int VIBRATE_FINISH_GAME = 444;
 
-    private boolean test =false;
-    private boolean test2 =false;
+    //翻轉參數
+    private View view_anim;
+    private boolean aBoolean_add_fraction = false;
+    private boolean aBoolean_delete_fraction = true;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,8 +70,10 @@ public class Fragment_game_play extends Fragment implements View.OnClickListener
         super.onCreateView(inflater, container, savedInstanceState);
         TestLog.myLog_d(FRAGMENT, "onCreateView()");
 
-        view = inflater.inflate(R.layout.play_game_fragment, container, false);
-        return view;
+        view_anim = inflater.inflate(R.layout.play_game_fragment, container, false);
+
+        init();
+        return view_anim;
     }
 
 
@@ -76,33 +83,31 @@ public class Fragment_game_play extends Fragment implements View.OnClickListener
         super.onStart();
         TestLog.myLog_d(FRAGMENT, "onStart()");
 
-        init();
+
     }
 
     private void init() {
-        //Log 先確認比賽規則
-        TestLog.myLog_w(FRAGMENT, "init() MAX_FRACTION", MAX_FRACTION);
-        TestLog.myLog_w(FRAGMENT, "init() MIN_FRACTION", MIN_FRACTION);
-        TestLog.myLog_w(FRAGMENT, "init() MAX_POINT", MAX_POINT);
-        TestLog.myLog_w(FRAGMENT, "init() MIN_POINT", MIN_POINT);
 
         res = getResources();
 
-        btn_add_fraction = (Button) view.findViewById(R.id.play_game_fragment_btn_add);
-        btn_delete_fraction = (Button) view.findViewById(R.id.play_game_fragment_btn_delete);
+        btn_add_fraction = (Button) view_anim.findViewById(R.id.play_game_fragment_btn_add);
+        btn_delete_fraction = (Button) view_anim.findViewById(R.id.play_game_fragment_btn_delete);
 
-        tv_point1 = (TextView) view.findViewById(R.id.play_game_fragment_tv_point1);
-        tv_point2 = (TextView) view.findViewById(R.id.play_game_fragment_tv_point2);
-        tv_point3 = (TextView) view.findViewById(R.id.play_game_fragment_tv_point3);
+        tv_fraction1 = (TextView) view_anim.findViewById(R.id.play_game_fragment_tv_fraction1);
+        tv_fraction2 = (TextView) view_anim.findViewById(R.id.play_game_fragment_tv_fraction2);
+        tv_fraction3 = (TextView) view_anim.findViewById(R.id.play_game_fragment_tv_fraction3);
 
-        btn_add_fraction.setOnClickListener(this);
-        btn_delete_fraction.setOnClickListener(this);
+            btn_add_fraction.setOnClickListener(this);
+            btn_delete_fraction.setOnClickListener(this);
+
     }
+
 
     @Override
     public void onResume() {
         super.onResume();
         TestLog.myLog_d(FRAGMENT, "onResume()");
+
     }
 
     @Override
@@ -122,51 +127,37 @@ public class Fragment_game_play extends Fragment implements View.OnClickListener
         }
 
         //Log 確定第n局 進行加分
-        TestLog.myLog_d(FRAGMENT, "Add point"+current_typ_point+"'s fraction");
+        TestLog.myLog_d(FRAGMENT, "Add point" + current_typ_point + "'s fraction");
         switch (current_typ_point) {
 
             case 1:
                 current_fraction++;
-                tv_point1.setText(String.valueOf(current_fraction));
+                tv_fraction1.setText(String.valueOf(current_fraction));
                 break;
 
             case 2:
                 current_fraction++;
-                tv_point2.setText(String.valueOf(current_fraction));
+                tv_fraction2.setText(String.valueOf(current_fraction));
                 break;
 
             case 3:
                 current_fraction++;
-                tv_point3.setText(String.valueOf(current_fraction));
+                tv_fraction3.setText(String.valueOf(current_fraction));
                 break;
         }
-        TestLog.myLog_d(FRAGMENT,res.getString(R.string.msg_check_current_Fraction), current_fraction);
+        TestLog.myLog_d(FRAGMENT, res.getString(R.string.msg_check_current_Fraction), current_fraction);
 
-
-
-        //增加震動判斷
-        if(current_fraction+1 == MAX_FRACTION){
-
-            test = true;
-            TestLog.myLog_w(FRAGMENT, "test", test);
-        }
-
-        if(current_fraction+1 == MAX_FRACTION && current_point == MAX_POINT){
-
-            test2 = true;
-            TestLog.myLog_w(FRAGMENT, "test2", test2);
-        }
 
         //結束比賽→ (當前局數 = 最大局數) 且 (當前分數 => 最大分數) 執行  並return
-        if(MAX_FRACTION <= current_fraction && badminton_Servicer.getCurrent_typ_point() == MAX_POINT){
+        if (MAX_FRACTION <= current_fraction && badminton_Servicer.getCurrent_typ_point() == MAX_POINT) {
 
             TestLog.myLog_w(FRAGMENT, "Ready action intent", current_fraction);
 
             //跳轉方法
             intent_function();
+
             //震動
             vibrate_function(VIBRATE_FINISH_GAME);
-
             return;
         }
 
@@ -174,9 +165,7 @@ public class Fragment_game_play extends Fragment implements View.OnClickListener
         if (MAX_FRACTION <= current_fraction) {
             TestLog.myLog_w(FRAGMENT, "Ready next point", current_fraction);
 
-            if(true){
-TestLog.myLog_w("tag","@@@@@@@@@@@@@@@@@");
-
+            if (true) {
 
                 //震動
                 vibrate_function(VIBRATE_CHANGE_POINI);
@@ -184,7 +173,7 @@ TestLog.myLog_w("tag","@@@@@@@@@@@@@@@@@");
 
 
             String title = res.getString(R.string.dialog_title_nextPoint);
-            String msg =res.getString(R.string.dialog_msg_nextPoint);
+            String msg = res.getString(R.string.dialog_msg_nextPoint);
 
             // Context、標題、按鈕(右)、監聽事件、按鈕(左)、監聽事件
             PhoneDialog dialog = HelperBasePhoneDialog.createDialog(getActivity(),
@@ -215,14 +204,14 @@ TestLog.myLog_w("tag","@@@@@@@@@@@@@@@@@");
                 TestLog.myLog_d(FRAGMENT, "減少 第一局 分數");
 
                 current_fraction--;
-                tv_point1.setText(String.valueOf(current_fraction));
+                tv_fraction1.setText(String.valueOf(current_fraction));
                 break;
 
             case 2:
                 TestLog.myLog_d(FRAGMENT, "減少 第二局 分數");
 
                 current_fraction--;
-                tv_point2.setText(String.valueOf(current_fraction));
+                tv_fraction2.setText(String.valueOf(current_fraction));
 
                 break;
 
@@ -230,14 +219,14 @@ TestLog.myLog_w("tag","@@@@@@@@@@@@@@@@@");
                 TestLog.myLog_d(FRAGMENT, "減少 第三局 分數");
 
                 current_fraction--;
-                tv_point3.setText(String.valueOf(current_fraction));
+                tv_fraction3.setText(String.valueOf(current_fraction));
                 break;
         }
         TestLog.myLog_d(FRAGMENT, "目前的分數", current_fraction);
     }
 
     //《方法》交換分數
-    public void change_fraction_function(int typ){
+    public void change_fraction_function(int typ) {
         TestLog.myLog_d(FRAGMENT, "change_fraction_function()");
 
         Game_badminton_servicer[] myList = badminton_Servicer.getList_service();
@@ -246,16 +235,16 @@ TestLog.myLog_w("tag","@@@@@@@@@@@@@@@@@");
         String point2_fraction = myList[typ].getPoint_2_fraction();
         String point3_fraction = myList[typ].getPoint_3_fraction();
 
-        tv_point1.setText(point1_fraction);
-        tv_point2.setText(point2_fraction);
-        tv_point3.setText(point3_fraction);
+        tv_fraction1.setText(point1_fraction);
+        tv_fraction2.setText(point2_fraction);
+        tv_fraction3.setText(point3_fraction);
     }
 
     //《方法》Intent
-    private void intent_function(){
+    private void intent_function() {
 
         String title = res.getString(R.string.dialog_title_nextClass);
-        String msg =res.getString(R.string.dialog_msg_nextClass);
+        String msg = res.getString(R.string.dialog_msg_nextClass);
 
         // Context、標題、按鈕(右)、監聽事件、按鈕(左)、監聽事件
         PhoneDialog dialog = HelperBasePhoneDialog.createDialog(getActivity(),
@@ -267,11 +256,11 @@ TestLog.myLog_w("tag","@@@@@@@@@@@@@@@@@");
                     public void onClick(DialogInterface dialog, int which) {
 
                         //跳轉
-                        Intent intent = new Intent(getActivity(),Badminton_play_final.class);
+                        Intent intent = new Intent(getActivity(), Badminton_play_final.class);
                         startActivity(intent);
                         dialog.dismiss();
-                        TestLog.myLog_w(FRAGMENT,"intent_function()"+res.getString(R.string.msg_check_current_Point), current_point);
-                        TestLog.myLog_w(FRAGMENT,"intent_function(),getServicer"+res.getString(R.string.msg_check_current_Point),badminton_Servicer.getCurrent_typ_point());
+                        TestLog.myLog_w(FRAGMENT, "intent_function()" + res.getString(R.string.msg_check_current_Point), current_point);
+                        TestLog.myLog_w(FRAGMENT, "intent_function(),getServicer" + res.getString(R.string.msg_check_current_Point), badminton_Servicer.getCurrent_typ_point());
                     }
                 },
                 res.getString(R.string.dialog_btn_cancel),
@@ -281,17 +270,17 @@ TestLog.myLog_w("tag","@@@@@@@@@@@@@@@@@");
 
     }
 
-    //《震動》Intent
-    private void vibrate_function(int typ){
+    //《方法》震動
+    private void vibrate_function(int typ) {
         TestLog.myLog_d(FRAGMENT, "vibrate_function()", typ);
+
         //記得Manifest 加權限
         Vibrator mVibrator;
-
         mVibrator = (Vibrator) getActivity().getSystemService(Service.VIBRATOR_SERVICE);
 
-        switch (typ){
+        switch (typ) {
             case VIBRATE_ADD_FRACTION: //增加分數
-                mVibrator.vibrate(new long[]{20,30,50,100} ,-1);
+                mVibrator.vibrate(new long[]{20, 30, 50, 100}, -1);
                 break;
 
             case VIBRATE_DELETE_FRACTION: //減少分數
@@ -299,7 +288,7 @@ TestLog.myLog_w("tag","@@@@@@@@@@@@@@@@@");
                 break;
 
             case VIBRATE_CHANGE_POINI: //換局
-                mVibrator.vibrate(new long[]{300,600} ,-1);
+                mVibrator.vibrate(new long[]{300, 600}, -1);
                 break;
 
             case VIBRATE_FINISH_GAME:  //結束比賽
@@ -308,13 +297,91 @@ TestLog.myLog_w("tag","@@@@@@@@@@@@@@@@@");
         }
     }
 
-    //Button onClick
+    //《方法》翻轉效果
+    public void play_start(int direction, int angle, int speed, int path, final int current_point, final Context context) {
+
+
+        switch (current_point) {
+
+            case 1:
+                view_anim = tv_fraction1;
+                break;
+            case 2:
+                view_anim = tv_fraction2;
+                break;
+            case 3:
+                view_anim = tv_fraction3;
+                break;
+        }
+
+        String path_str = "";
+        switch (path) {
+
+            case 1:
+                path_str = "rotationX";
+                break;
+            case 2:
+                path_str = "rotationX";
+                break;
+
+        }
+
+        // 動畫加速特效(有非常多種)
+        Interpolator accelerator = new AccelerateInterpolator();
+
+        // 顯示到隱藏翻轉設定
+        ObjectAnimator animator = ObjectAnimator.ofFloat(view_anim, path_str, 0f, angle * direction);
+
+        // 顯示到隱藏完成時間
+        animator.setDuration(speed);
+
+        // 加入動畫加速效果
+        animator.setInterpolator(accelerator);
+
+        // 動畫監聽器
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator anim) {
+
+                if (aBoolean_add_fraction == true) {
+
+                    //新增分數function
+                    add_fraction_function(current_point);
+                    aBoolean_add_fraction = false;
+                    return;
+                }
+
+                if (aBoolean_delete_fraction == true) {
+
+                    //減少分數function
+                    delete_fraction_function(current_point);
+                    aBoolean_delete_fraction = false;
+                    return;
+                }
+
+
+            }
+        });
+
+        // 動畫啓動
+        animator.start();
+    }
+
+    //《OnClick》Button
     @Override
     public void onClick(View v) {
         TestLog.myLog_d(FRAGMENT, "onClick");
 
+        //Log 確認比賽設定
+        MAX_FRACTION = badminton_Servicer.getMax_fraction();
+        TestLog.myLog_w(FRAGMENT, "init() MAX_FRACTION", MAX_FRACTION);
+        TestLog.myLog_w(FRAGMENT, "init() MIN_FRACTION", MIN_FRACTION);
+        TestLog.myLog_w(FRAGMENT, "init() MAX_POINT", MAX_POINT);
+        TestLog.myLog_w(FRAGMENT, "init() MIN_POINT", MIN_POINT);
+
+        //Log 確認當前比分
         current_point = badminton_Servicer.getCurrent_typ_point();
-        TestLog.myLog_w(FRAGMENT,"onClick()"+res.getString(R.string.msg_check_current_Point),current_point);
+        TestLog.myLog_w(FRAGMENT, "onClick()" + res.getString(R.string.msg_check_current_Point), current_point);
 
 
 //      交換分數後 所做的檢查function Start  (交換分數後 先取得當前Layout的分數 再進行加減分)
@@ -331,8 +398,10 @@ TestLog.myLog_w("tag","@@@@@@@@@@@@@@@@@");
                 //震動特效方法(一定要放 新增分數上方，否則新增分數內的震動方法 會被取代)
                 vibrate_function(VIBRATE_ADD_FRACTION);
 
-                //新增分數function
-                add_fraction_function(current_point);
+                //翻轉效果
+                aBoolean_add_fraction = true;
+                play_start(1, 360, 300, 2, current_point, getActivity());
+
 
 
                 break;
@@ -343,15 +412,14 @@ TestLog.myLog_w("tag","@@@@@@@@@@@@@@@@@");
                 //震動特效方法
                 vibrate_function(VIBRATE_DELETE_FRACTION);
 
-                //減少分數function
-                delete_fraction_function(current_point);
-
-
+                //翻轉效果
+                aBoolean_delete_fraction = true;
+                play_start(1, -360, 150, 2, current_point, getActivity());
                 break;
         }
     }
 
-    //Dialog onClick
+    //《OnClick》Dialog
     @Override
     public void onClick(DialogInterface dialog, int which) {
 
@@ -362,7 +430,7 @@ TestLog.myLog_w("tag","@@@@@@@@@@@@@@@@@");
 
                 //如果 當前局數 >= max局數 就return
                 if (MAX_POINT <= current_point) {
-                    Toast.makeText(getActivity(), "Final", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivity(), "Final", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -390,39 +458,36 @@ TestLog.myLog_w("tag","@@@@@@@@@@@@@@@@@");
         }
     }
 
-
-
     /**
      * 交換分數後 所做的檢查function
      * 因為交換前的分數 可能會跟 交換後的不一樣
      * 所以先取得當前Layout的分數 再進行加減分
      */
-    private void check_current_point_function(int typ_point){
+    private void check_current_point_function(int typ_point) {
         TestLog.myLog_d(FRAGMENT, "check_current_point_function()");
 
 
-
         //current_point = 當前的局數
-        switch (typ_point){
+        switch (typ_point) {
 
             case 1:
-                current_fraction = Integer.valueOf(tv_point1.getText().toString());
+                current_fraction = Integer.valueOf(tv_fraction1.getText().toString());
                 break;
             case 2:
-                current_fraction = Integer.valueOf(tv_point2.getText().toString());
+                current_fraction = Integer.valueOf(tv_fraction2.getText().toString());
                 break;
             case 3:
-                current_fraction = Integer.valueOf(tv_point3.getText().toString());
+                current_fraction = Integer.valueOf(tv_fraction3.getText().toString());
                 break;
 
         }
 
-        TestLog.myLog_w(FRAGMENT,"check_current_point_function()"+res.getString(R.string.msg_check_current_Point),current_point);
-        TestLog.myLog_w(FRAGMENT,"check_current_point_function()"+res.getString(R.string.msg_check_current_Fraction),current_fraction);
+        TestLog.myLog_w(FRAGMENT, "check_current_point_function()" + res.getString(R.string.msg_check_current_Point), current_point);
+        TestLog.myLog_w(FRAGMENT, "check_current_point_function()" + res.getString(R.string.msg_check_current_Fraction), current_fraction);
     }
 
 
-    //Fragment 執行 clean_fraction(Public for Activity use解除耦合)
+    //《解耦》Fragment 執行 clean_fraction (Public for Activity use解除耦合)
     public void fragment_clean_current_point_fraction() {
         TestLog.myLog_d(FRAGMENT, "clean_current_point1_fraction()");
 
@@ -434,40 +499,40 @@ TestLog.myLog_w("tag","@@@@@@@@@@@@@@@@@");
             case 1:
                 //設定當前分數=0
                 current_fraction = 0;
-                tv_point1.setText(String.valueOf(current_fraction));
-                TestLog.myLog_d(FRAGMENT,"Clean= " + current_fraction+ "局", "， Current_point= " + current_typ);
+                tv_fraction1.setText(String.valueOf(current_fraction));
+                TestLog.myLog_d(FRAGMENT, "Clean= " + current_fraction + "局", "， Current_point= " + current_typ);
                 break;
 
             case 2:
                 //設定當前分數=0
                 current_fraction = 0;
-                tv_point2.setText(String.valueOf(current_fraction));
-                TestLog.myLog_d(FRAGMENT,"Clean= " + current_fraction+ "局", "， Current_point= " + current_typ);
+                tv_fraction2.setText(String.valueOf(current_fraction));
+                TestLog.myLog_d(FRAGMENT, "Clean= " + current_fraction + "局", "， Current_point= " + current_typ);
                 break;
 
             case 3:
                 //設定當前分數=0
                 current_fraction = 0;
-                tv_point3.setText(String.valueOf(current_fraction));
-                TestLog.myLog_d(FRAGMENT,"Clean= " + current_fraction+ "局", "， Current_point= " + current_typ);
+                tv_fraction3.setText(String.valueOf(current_fraction));
+                TestLog.myLog_d(FRAGMENT, "Clean= " + current_fraction + "局", "， Current_point= " + current_typ);
                 break;
         }
     }
 
 
-    //取得當前顯示分數　並記錄(Public  for Activity use 解除耦合)
-    public Game_badminton_servicer fragment_savaData_function(String name , Bitmap bit){
+    //《解耦》取得當前顯示分數，並記錄       (Public  for Activity use 解除耦合)
+    public Game_badminton_servicer fragment_savaData_function(String name, Bitmap bit) {
 
-        String point1_str = tv_point1.getText().toString();
-        String point2_str = tv_point2.getText().toString();
-        String point3_str = tv_point3.getText().toString();
-
+        String point1_str = tv_fraction1.getText().toString();
+        String point2_str = tv_fraction2.getText().toString();
+        String point3_str = tv_fraction3.getText().toString();
 
         Game_badminton_servicer servicer;
-        servicer = new Game_badminton_servicer(point1_str,point2_str,point3_str,name,bit);
+        servicer = new Game_badminton_servicer(point1_str, point2_str, point3_str, name, bit);
 
         return servicer;
     }
+
 
 
 }

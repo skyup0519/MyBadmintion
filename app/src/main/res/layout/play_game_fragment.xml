@@ -1,28 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/listview_bg"
     tools:context=".Fragment.Fragment_viewpage1">
 
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
+        android:id="@+id/play_game_fragment_container"
         android:paddingRight="8dp"
         android:paddingLeft="1dp"
         android:layout_width="match_parent"
-        android:background="#263238"
         android:orientation="horizontal"
         android:layout_height="150dp">
 
-        <View
-            android:layout_width="3dp"
-            android:layout_marginRight="8dp"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_red_dark"
-            ></View>
+
         <TextView
           android:textStyle="bold"
-            android:id="@+id/play_game_fragment_tv_point1"
+            android:id="@+id/play_game_fragment_tv_fraction1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -41,7 +37,7 @@
 
         <TextView
             android:textStyle="bold"
-            android:id="@+id/play_game_fragment_tv_point2"
+            android:id="@+id/play_game_fragment_tv_fraction2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -60,7 +56,7 @@
 
         <TextView
             android:textStyle="bold"
-            android:id="@+id/play_game_fragment_tv_point3"
+            android:id="@+id/play_game_fragment_tv_fraction3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -101,4 +97,6 @@
             />
     </LinearLayout>
 
-</FrameLayout>
+
+
+</RelativeLayout>

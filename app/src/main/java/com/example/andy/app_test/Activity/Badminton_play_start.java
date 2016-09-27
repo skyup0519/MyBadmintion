@@ -1,14 +1,22 @@
 package com.example.andy.app_test.Activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.app.FragmentTransaction;
+import android.app.Service;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -51,6 +59,16 @@ public class Badminton_play_start extends DrawersGod implements AlertDialog.OnCl
     private Fragment_game_play fragment_up;
     private Fragment_game_play fragment_down;
 
+    //Layout contauner
+    private LinearLayout layout_container_up;
+    private LinearLayout layout_container_down;
+
+    //team msg
+
+    private LinearLayout layout_team_up;
+    private LinearLayout layout_team_down;
+
+
     //EditText
     private EditText m_et_name_up;
     private EditText m_et_name_down;
@@ -72,8 +90,52 @@ public class Badminton_play_start extends DrawersGod implements AlertDialog.OnCl
 
         init();
 
+        PhoneDialog dialog = HelperBasePhoneDialog.createDialog(context,
+                "選擇 『比賽制度』",
+                "舊制15分，新制21分",
+                "新制",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        badminton_Servicer.setMax_fraction(21);
+
+                        dialog.dismiss();
+                        dialog.dismiss();
+
+
+                    }
+                },
+                "舊制",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        badminton_Servicer.setMax_fraction(15);
+                        dialog.dismiss();
+                        dialog.dismiss();
+
+                    }
+                });
+
+
+        dialog.show();
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        TestLog.myLog_d(BADMINTON, "onStart()");
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        TestLog.myLog_d(BADMINTON, "onPause()");
+//        save_data_function();
+    }
+
 
     @Override
     public LinearLayout tagLayout() {
@@ -89,6 +151,15 @@ public class Badminton_play_start extends DrawersGod implements AlertDialog.OnCl
         badminton_Servicer = MyApp.getMain_badminton_servicer();
         badminton_list = badminton_Servicer.getList_service();
 
+        //fragment container
+        layout_container_up = (LinearLayout)findViewById(R.id.badmintion_play_main_linear_fragment_container_up) ;
+        layout_container_down = (LinearLayout)findViewById(R.id.badmintion_play_main_linear_fragment_container_down) ;
+
+        //team 全部資訊
+        layout_team_up= (LinearLayout)findViewById(R.id.badmintion_play_main_linear_container_team_up) ;
+        layout_team_down= (LinearLayout)findViewById(R.id.badmintion_play_main_linear_container_team_down) ;
+
+
         m_et_name_up = (EditText) findViewById(R.id.badmintion_play_main_et_name_up);
         m_et_name_down = (EditText) findViewById(R.id.badmintion_play_main_et_name_down);
         m_iv_photo_up = (ImageView) findViewById(R.id.badmintion_play_main_iv_photo_up);
@@ -98,8 +169,8 @@ public class Badminton_play_start extends DrawersGod implements AlertDialog.OnCl
         fragment_down = new Fragment_game_play();
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.badmintion_play_main_linear_container_up, fragment_up);
-        ft.replace(R.id.badmintion_play_main_linear_container_down, fragment_down);
+        ft.replace(R.id.badmintion_play_main_linear_fragment_container_up, fragment_up);
+        ft.replace(R.id.badmintion_play_main_linear_fragment_container_down, fragment_down);
         ft.commit();
 
         //設定Log的開關
@@ -225,24 +296,12 @@ public class Badminton_play_start extends DrawersGod implements AlertDialog.OnCl
     //《方法》換邊
     private void change_function() {
         TestLog.myLog_d(BADMINTON, "change_function()");
-
         //紀錄當局的分數
         save_data_function();
 
-        // badminton_list[SaveData.MODE_DOWN] 此集合myList[0] 記錄上面物件狀態
-        // badminton_list[SaveData.MODE_UP]   此集合myList[1] 記錄下面物件狀態
-
-        //(重制) 分數
-        fragment_up.change_fraction_function(SaveData.MODE_DOWN);
-        fragment_down.change_fraction_function(SaveData.MODE_UP);
-
-        //(重制) name
-        m_et_name_up.setText(badminton_list[SaveData.MODE_DOWN].getName().toString());
-        m_et_name_down.setText(badminton_list[SaveData.MODE_UP].getName().toString());
-
-        //(重制) 大頭照
-        m_iv_photo_up.setImageBitmap(badminton_list[SaveData.MODE_DOWN].getPhoto());
-        m_iv_photo_down.setImageBitmap(badminton_list[SaveData.MODE_UP].getPhoto());
+        //(方向、角度、完成時間、view、cxt)
+        play_start(1,360,2500,layout_container_up,context);
+        play_start(1,-360,2500,layout_container_down,context);
 
     }
 
@@ -270,13 +329,7 @@ public class Badminton_play_start extends DrawersGod implements AlertDialog.OnCl
         return;
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        TestLog.myLog_d(BADMINTON, "onPause()");
-        save_data_function();
 
-    }
 
     //考慮到生命週期 及 交換局數 = 在此建立一個function方便使用
     private void save_data_function(){
@@ -290,7 +343,8 @@ public class Badminton_play_start extends DrawersGod implements AlertDialog.OnCl
         Bitmap bitmap_up = ((BitmapDrawable) m_iv_photo_up.getDrawable()).getBitmap();
         Bitmap bitmap_down = ((BitmapDrawable) m_iv_photo_down.getDrawable()).getBitmap();
 
-        //Fragment function (將Activity的參數導入Fragment 一併做 存檔)
+        // badminton_list[SaveData.MODE_DOWN] 此集合myList[0] 記錄上面物件狀態
+        // badminton_list[SaveData.MODE_UP]   此集合myList[1] 記錄下面物件狀態
         badminton_list[SaveData.MODE_UP]=fragment_up.fragment_savaData_function(name_up , bitmap_up);
         badminton_list[SaveData.MODE_DOWN]=fragment_down.fragment_savaData_function(name_down , bitmap_down);
 
@@ -309,5 +363,78 @@ public class Badminton_play_start extends DrawersGod implements AlertDialog.OnCl
         TestLog.myLog_w(BADMINTON, "onPause()","getBitmap down = " + badminton_list[SaveData.MODE_DOWN].getPhoto());
     }
 
+    // 動畫加速效果 AccelerateInterpolator();
+    private Interpolator accelerator = new OvershootInterpolator();
+
+    // 動畫減速效果
+    private Interpolator decelerator = new DecelerateInterpolator();
+
+
+    // 參數 direction : 1:right to left, -1:left to right
+    // 參數 speed : 翻動速度
+    public void play_start(int direction, int angle, int speed, View view, final Context context) {
+        // 顯示到隱藏翻轉設定
+        ObjectAnimator animator = ObjectAnimator.ofFloat(view, "rotationY", 0f, angle * direction);
+
+        // 顯示到隱藏完成時間
+        animator.setDuration(speed);
+
+        // 加入動畫加速效果
+        animator.setInterpolator(accelerator);
+
+        // 動畫監聽器
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator anim) {
+
+                play_end(1,720,200,layout_container_up,context);
+                play_end(1,720,200,layout_container_down,context);
+            }
+        });
+
+        // 動畫啓動
+        animator.start();
+    }
+
+    public void play_end(int direction, int angle, int speed, View view, final Context context) {
+//        Toast.makeText(context, "play_end", Toast.LENGTH_SHORT).show();
+
+        // 顯示到隱藏翻轉設定
+        ObjectAnimator animator = ObjectAnimator.ofFloat(view, "rotationX", 0f, angle * direction);
+
+        // 顯示到隱藏完成時間
+        animator.setDuration(speed);
+
+        // 加入動畫加速效果
+        animator.setInterpolator(accelerator);
+
+        // 動畫監聽器
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator anim) {
+
+
+                //(重制) 分數
+                fragment_up.change_fraction_function(SaveData.MODE_DOWN);
+                fragment_down.change_fraction_function(SaveData.MODE_UP);
+
+                //(重制) name
+                m_et_name_up.setText(badminton_list[SaveData.MODE_DOWN].getName().toString());
+                m_et_name_down.setText(badminton_list[SaveData.MODE_UP].getName().toString());
+
+                //(重制) 大頭照
+                m_iv_photo_up.setImageBitmap(badminton_list[SaveData.MODE_DOWN].getPhoto());
+                m_iv_photo_down.setImageBitmap(badminton_list[SaveData.MODE_UP].getPhoto());
+
+                //震動功能
+                Vibrator mVibrator;
+                mVibrator = (Vibrator) context.getSystemService(Service.VIBRATOR_SERVICE);
+                mVibrator.vibrate(30);
+            }
+        });
+
+        // 動畫啓動
+        animator.start();
+    }
 }
 

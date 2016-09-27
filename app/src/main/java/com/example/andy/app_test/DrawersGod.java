@@ -143,9 +143,6 @@ public abstract class DrawersGod extends AppCompatActivity
         menu.add(00,0, Menu.NONE,"開啟-全屏");
         menu.add(00,1,Menu.NONE,"關閉-全屏");
 
-        menu.add(11,2,Menu.NONE,"結束");
-        menu.add(11,3,Menu.NONE,"確定結束");
-
         return true;
     }
 
@@ -184,15 +181,7 @@ View view = findViewById(R.id.content_view_up);
 
         return super.onOptionsItemSelected(item);
     }
-    //直接跳轉
-    //
 
-    //  羽球
-    //
-    //
-
-    //
-    //
 
     private final String FACEBOOK = "com.facebook.katana";
     private final String YOUTUBE  = "com.google.android.youtube";

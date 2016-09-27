@@ -41,7 +41,13 @@ public class Badminton_sportCenter extends DrawersGod implements Observer,AlertD
         //SportOpenDateUtil.loadDate(我需要一個Observer)
         //Badminton_sportCenter 繼承Observer 所以本身就是Observer，所以輸入this即可
         SportOpenDateUtil.loadDate(this);
+
         init();
+
+        dialog_process = HelperBasePhoneDialog.createProgressDialog(context,res.getString(R.string.process_msg));
+        dialog_process.show();
+
+
     }
 
     @Override
@@ -53,9 +59,18 @@ public class Badminton_sportCenter extends DrawersGod implements Observer,AlertD
     @Override
     protected void onResume() {
         super.onResume();
+        TestLog.myLog_d(SPORT_MENU,"onResume()");
         //onPause back to onResume
-        dialog_process = HelperBasePhoneDialog.createProgressDialog(context,res.getString(R.string.process_msg));
-        dialog_process.show();
+
+
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        TestLog.myLog_d(SPORT_MENU,"onPause()");
+
     }
 
     //初始化
