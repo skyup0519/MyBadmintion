@@ -32,9 +32,12 @@ import com.example.andy.app_test.model.Game_badminton_servicer;
 import com.example.andy.app_test.model.Main_badminton_servicer;
 import com.example.andy.app_test.model.Main_badminton_servicer.SaveData;
 import com.example.andy.app_test.myapp.MyApp;
+import com.example.andy.app_test.util.FireBase_Util;
+
+import java.util.List;
 
 
-public class Badminton_play_start extends DrawersGod implements AlertDialog.OnClickListener {
+public class Badminton_play_start extends DrawersGod implements AlertDialog.OnClickListener , FireBase_Util.FireBase_OnchangeListener {
 
     private Context context;
     private Resources res;
@@ -64,7 +67,6 @@ public class Badminton_play_start extends DrawersGod implements AlertDialog.OnCl
     private LinearLayout layout_container_down;
 
     //team msg
-
     private LinearLayout layout_team_up;
     private LinearLayout layout_team_down;
 
@@ -81,6 +83,8 @@ public class Badminton_play_start extends DrawersGod implements AlertDialog.OnCl
     private Bitmap bitmap_up;
     private Bitmap bitmap_down;
 
+    private   TextView tv_murquee;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +94,73 @@ public class Badminton_play_start extends DrawersGod implements AlertDialog.OnCl
 
         init();
 
+        start_setGame_rule();
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        TestLog.myLog_d(BADMINTON, "onStart()");
+
+
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        TestLog.myLog_d(BADMINTON, "onPause()");
+        save_data_function();
+    }
+
+
+    @Override
+    public LinearLayout tagLayout() {
+        LinearLayout layout = (LinearLayout)findViewById(R.id.badmintion_play_main_container);
+        return layout;
+    }
+
+    private void init() {
+        TestLog.myLog_d(BADMINTON, "init()");
+
+        context = this;
+        res=getResources();
+        badminton_Servicer = MyApp.getMain_badminton_servicer();
+        badminton_list = badminton_Servicer.getList_service();
+
+        //跑馬燈
+        tv_murquee = (TextView) findViewById(R.id.marquee_msg);
+        tv_murquee.setSelected(true);
+
+        //fragment container
+        layout_container_up = (LinearLayout)findViewById(R.id.badmintion_play_main_linear_fragment_container_up) ;
+        layout_container_down = (LinearLayout)findViewById(R.id.badmintion_play_main_linear_fragment_container_down) ;
+
+        //team 全部資訊
+        layout_team_up= (LinearLayout)findViewById(R.id.badmintion_play_main_linear_container_team_up) ;
+        layout_team_down= (LinearLayout)findViewById(R.id.badmintion_play_main_linear_container_team_down) ;
+
+
+        m_et_name_up = (EditText) findViewById(R.id.badmintion_play_main_et_name_up);
+        m_et_name_down = (EditText) findViewById(R.id.badmintion_play_main_et_name_down);
+        m_iv_photo_up = (ImageView) findViewById(R.id.badmintion_play_main_iv_photo_up);
+        m_iv_photo_down = (ImageView) findViewById(R.id.badmintion_play_main_iv_photo_down);
+
+        fragment_up = new Fragment_game_play();
+        fragment_down = new Fragment_game_play();
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.badmintion_play_main_linear_fragment_container_up, fragment_up);
+        ft.replace(R.id.badmintion_play_main_linear_fragment_container_down, fragment_down);
+        ft.commit();
+
+        //設定Log的開關
+//        TestLog.setBoolean_log_msg(false);
+    }
+
+    private void start_setGame_rule(){
         PhoneDialog dialog = HelperBasePhoneDialog.createDialog(context,
                 "選擇 『比賽制度』",
                 "舊制15分，新制21分",
@@ -120,67 +191,12 @@ public class Badminton_play_start extends DrawersGod implements AlertDialog.OnCl
 
         dialog.show();
 
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        TestLog.myLog_d(BADMINTON, "onStart()");
+        //Firebase start
+        FireBase_Util.fireasefunction(context);
+        FireBase_Util.setFireBase_onchangeListener(this);
     }
 
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        TestLog.myLog_d(BADMINTON, "onPause()");
-//        save_data_function();
-    }
-
-
-    @Override
-    public LinearLayout tagLayout() {
-        LinearLayout layout = (LinearLayout)findViewById(R.id.badmintion_play_main_container);
-        return layout;
-    }
-
-    private void init() {
-        TestLog.myLog_d(BADMINTON, "init()");
-
-        context = this;
-        res=getResources();
-        badminton_Servicer = MyApp.getMain_badminton_servicer();
-        badminton_list = badminton_Servicer.getList_service();
-
-        //fragment container
-        layout_container_up = (LinearLayout)findViewById(R.id.badmintion_play_main_linear_fragment_container_up) ;
-        layout_container_down = (LinearLayout)findViewById(R.id.badmintion_play_main_linear_fragment_container_down) ;
-
-        //team 全部資訊
-        layout_team_up= (LinearLayout)findViewById(R.id.badmintion_play_main_linear_container_team_up) ;
-        layout_team_down= (LinearLayout)findViewById(R.id.badmintion_play_main_linear_container_team_down) ;
-
-
-        m_et_name_up = (EditText) findViewById(R.id.badmintion_play_main_et_name_up);
-        m_et_name_down = (EditText) findViewById(R.id.badmintion_play_main_et_name_down);
-        m_iv_photo_up = (ImageView) findViewById(R.id.badmintion_play_main_iv_photo_up);
-        m_iv_photo_down = (ImageView) findViewById(R.id.badmintion_play_main_iv_photo_down);
-
-        fragment_up = new Fragment_game_play();
-        fragment_down = new Fragment_game_play();
-
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.badmintion_play_main_linear_fragment_container_up, fragment_up);
-        ft.replace(R.id.badmintion_play_main_linear_fragment_container_down, fragment_down);
-        ft.commit();
-
-        //設定Log的開關
-//        TestLog.setBoolean_log_msg(false);
-
-        //跑馬燈 start
-        TextView tv = (TextView) findViewById(R.id.marquee_msg);
-        tv.setSelected(true);
-        //跑馬燈 end
-    }
 
     //Button onclick
     public void onclick(View view) {
@@ -276,6 +292,29 @@ public class Badminton_play_start extends DrawersGod implements AlertDialog.OnCl
         }
     }
 
+    //Firebase onclick
+    @Override
+    public void onChange() {
+        TestLog.myLog_d(BADMINTON, "play_start onChange() Listener");
+
+
+        List<String> mylist = FireBase_Util.getMylist();
+        TestLog.myLog_d(BADMINTON, "onChange() mylist",mylist);
+
+        if(mylist == null){
+            TestLog.myLog_e(BADMINTON, "mylist return");
+            tv_murquee.setSelected(true);
+            return;
+        }
+
+
+
+        tv_murquee.setText("                     "+mylist.get(0).toString());
+        tv_murquee.setSelected(true);
+        //跑馬燈 end
+
+    }
+
     //《方法》本局刷新
     private void restar_function() {
         TestLog.myLog_d(BADMINTON, "restar_function");
@@ -328,8 +367,6 @@ public class Badminton_play_start extends DrawersGod implements AlertDialog.OnCl
         dialog.show();
         return;
     }
-
-
 
     //考慮到生命週期 及 交換局數 = 在此建立一個function方便使用
     private void save_data_function(){

@@ -30,15 +30,16 @@
 
 
     <ScrollView
-        android:layout_width="561dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/scrollView"
         android:layout_weight="0.95">
 
         <TextView
-            android:layout_width="428dp"
+            android:maxEms="10"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="內容"
+            android:text="資料更新中‧‧‧"
             android:textSize="25dp"
             android:id="@+id/tv_history"
             android:layout_weight="1.03" />
